@@ -5,6 +5,7 @@ export const config = {
 };
 
 export default async function handler() {
+  // Take in API props instead of these constants
   const viewBox = "0 0 500 100";
   const width = "100%";
   const height = "100%";
@@ -15,6 +16,7 @@ export default async function handler() {
     grainColor: "#fff",
     grainFrequency: 0.5,
   };
+
   return new ImageResponse(
     (
       <div
