@@ -42,6 +42,8 @@ export default async function handler(req: any) {
 
   // probably look into an example that takes in url search params and parses and decodes them
 
+  //ex: https://vercel.com/docs/concepts/functions/edge-functions/og-image-examples#dynamic-text-generated-as-image
+
   return new ImageResponse(
     (
       <div
