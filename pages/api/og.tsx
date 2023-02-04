@@ -1,11 +1,20 @@
 import { ImageResponse } from "@vercel/og";
+import { NextApiRequest } from "next";
 
 export const config = {
   runtime: "edge",
 };
 
-export default async function handler() {
-  // Take in API props instead of these constants
+export default async function handler(req: any) {
+  const { searchParams } = new URL(req.url);
+
+  const title = searchParams.get("foo");
+
+  // Turn input props into more manageable forms that you can use in URL params
+  // then parse here
+
+  // ex: https://docs.imgix.com/apis/rendering/color-palette/colors
+
   const viewBox = "0 0 500 100";
   const width = "100%";
   const height = "100%";
@@ -17,12 +26,28 @@ export default async function handler() {
     grainFrequency: 0.5,
   };
 
+  // Example way of encoding props into url params
+  const props = {
+    gradient: 50,
+    background: "black",
+    color: "white",
+    freq: 50,
+    w: 100,
+    h: 100,
+    dim: { minw: 0, minh: 0, w: 500, h: 100 },
+  };
+
+  const params = new URLSearchParams();
+  const str = encodeURIComponent(JSON.stringify(params));
+
+  // probably look into an example that takes in url search params and parses and decodes them
+
   return new ImageResponse(
     (
       <div
         style={{
           display: "flex",
-          fontSize: 40,
+          fontSize: 50,
           color: "black",
           background: "white",
           width: "100%",
